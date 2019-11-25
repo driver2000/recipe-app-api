@@ -3,7 +3,21 @@ services:
   app:
     build:
       context: .
+    depends_on:
+      - postgres
     ports:
       - 8000:8000
+    environment:
+      - DB_HOST=postgres
+      - DB_NAME=app
+      - DB_USER=app
     command: >
       sh -c "python manage.py runserver 0.0.0.0:8000"
+
+  postgres:
+    image: postgres:12-alpine
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DB=app
+      - POSTGRES_USER=app
