@@ -1,9 +1,11 @@
+from typing import Optional
+
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
 
 
 class UserManager(BaseUserManager):
-    def create_user(self, email, password=None, **kwargs):
+    def create_user(self, email: str, password: Optional[str] = None, **kwargs) -> AbstractBaseUser:
         if not email:
             raise ValueError("Users must be have an email address")
 
@@ -12,7 +14,7 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, password):
+    def create_superuser(self, email: str, password: str) -> AbstractBaseUser:
         user = self.create_user(email, password)
         user.is_staff = True
         user.is_superuser = True
