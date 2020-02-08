@@ -22,7 +22,7 @@ class TestPublicTagsAPI(TestCase):
 
 class TestPrivateTagsAPI(TestCase):
     def setUp(self):
-        self.user = get_user_model.objects.create_user(
+        self.user = get_user_model().objects.create_user(
             email="test@foo.com", password="verysecure123"
         )
         self.client = APIClient()
@@ -39,7 +39,7 @@ class TestPrivateTagsAPI(TestCase):
         self.assertEqual(res.data, serializer.data)
 
     def test_tags_limited_to_user(self):
-        user2 = get_user_model.objects.create_user(
+        user2 = get_user_model().objects.create_user(
             email="othertestuser@foo.com", password="verysecure123"
         )
         Tag.objects.create(user=user2, name="Fruity")
