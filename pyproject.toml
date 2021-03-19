@@ -7,7 +7,7 @@ authors = ["Daniele Iervolino <raiervol@gmail.com>"]
 [tool.poetry.dependencies]
 python = "^3.7"
 django = "^2.2"
-djangorestframework = "^3.10"
+djangorestframework = "^3.11"
 psycopg2 = "^2.8"
 flake8 = "^3.7"
 
